@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Agency</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+  <header class="header">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="./index.html">Home <span class="sr-only">(current)</span> </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="destinations.html">Destinations</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#destinations">Featured</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#services">Services</a>
+          </li>
+        </ul>
+      </div>
+      <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+    </nav>
+  </header>
+  <div class="jumbotron jumbotron-fluid">
+    <video autoplay loop muted>
+      <source src="./assets/video.mp4" type="video/mp4">
+    </video>
+    <div class="overlay">
+      <div class="typography-animation">
+        <h1 class="display-4">Elite Tours and Travels</h1>
+        <p class="lead">Explore our amazing destinations and book your trip today!</p>
+      </div>
+    </div>
+  </div>
+  <section id="destinations" class="section-1 py-5">
+    <div class="container">
+      <h2 class="section-title">Featured Destinations</h2>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card">
+            <img src="./assets/Paris.avif" class="card-img-top" alt="Place 1">
+            <div class="card-body">
+              <h5 class="card-title">Paris, France</h5>
+              <p class="card-text">The City of Light is famous for its stunning architecture, art museums, and romantic atmosphere.</p>
+              <a href="#" class="btn btn-primary">Book Now</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <img src="./assets/rome.avif" class="card-img-top" alt="Place 2">
+            <div class="card-body">
+              <h5 class="card-title">Rome, Italy</h5>
+              <p class="card-text">Explore the ancient ruins of the Roman Empire, indulge in delicious Italian cuisine, and soak up the vibrant atmosphere.</p>
+              <a href="#" class="btn btn-primary">Book Now</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <img src="./assets/Barcelona.avif" class="card-img-top" alt="Place 3">
+            <div class="card-body">
+              <h5 class="card-title">Barcelona, Spain</h5>
+              <p class="card-text">Discover the works of Gaudí, visit the famous Park Güell, and enjoy the beautiful beaches and nightlife of this vibrant city.</p>
+              <a href="#" class="btn btn-primary">Book Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="services" class="section-2 bg-light py-5">
+    <div class="container">
+      <h2 class="section-title">Our Services</h2>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card">
+            <img src="./assets/flight.avif" class="card-img-top" alt="Place 3">
+            <div class="card-body">
+              <h5 class="card-title">Flight Bookings</h5>
+              <p class="card-text">Get the best deals on flights to your favorite destinations.</p>
+              <a href="#" class="btn btn-primary">Learn More</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <img src="./assets/Hotel.avif" class="card-img-top" alt="Place 3">
+            <div class="card-body">
+              <h5 class="card-title">Hotel Reservations</h5>
+              <p class="card-text">Book comfortable and affordable accommodations worldwide.</p>
+              <a href="#" class="btn btn-primary">Learn More</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <img src="./assets/Travel.jpg" class="card-img-top" alt="Place 3">
+            <div class="card-body">
+              <h5 class="card-title">Tour Packages</h5>
+              <p class="card-text">Explore our tailored tour packages for an unforgettable experience.</p>
+              <a href="#" class="btn btn-primary">Learn More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script>
+    document.querySelectorAll('.btn-book').forEach(button => {
+      button.addEventListener('click', async () => {
+        const destinationId = button.dataset.destinationId;
+        const response = await fetch('/book', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ destinationId })
+        });
+        const data = await response.json();
+        console.log(data);
+      });
+    });
+  
+    fetch('/destinations')
+      .then(response => response.json())
+      .then(destinations => {
+        const destinationsHtml = destinations.map(destination => {
+          return `
+            <div class="col-md-4">
+              <div class="card">
+                <img src="${destination.image}" class="card-img-top" alt="${destination.name}">
+                <div class="card-body">
+                  <h5 class="card-title">${destination.name}</h5>
+                  <p class="card-text">${destination.description}</p>
+                  <button class="btn btn-primary btn-book" data-destination-id="${destination._id}">Book Now</button>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+        document.querySelector('#more-destinations-container').innerHTML = destinationsHtml;
+      });
+  </script>
+</body>
+</html>
